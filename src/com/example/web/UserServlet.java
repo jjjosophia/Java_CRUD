@@ -59,6 +59,9 @@ public class UserServlet extends HttpServlet {
 	            case "/user/update":
                     updateUser(request, response);
                     break;
+	            case "/user/delete":
+                    deleteUser(request, response);
+                    break;
 	           default:
 					listUser(request, response);
 					break;
@@ -77,6 +80,12 @@ public class UserServlet extends HttpServlet {
 	}
 
 
+	private void deleteUser(HttpServletRequest request, HttpServletResponse response)  throws SQLException, IOException{
+		int id = Integer.parseInt(request.getParameter("id"));
+		userDAO.deleteUser(id);
+        response.sendRedirect("list");
+
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -128,7 +137,7 @@ public class UserServlet extends HttpServlet {
 		
 	}
 
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	request.setCharacterEncoding("UTF-8");
     response.setLocale(Locale.TAIWAN);
 		doGet(request, response);

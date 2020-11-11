@@ -20,6 +20,7 @@
     <url-pattern>/user/insert</url-pattern>
     <url-pattern>/user/edit</url-pattern>
      <url-pattern>/user/update</url-pattern>
+     <url-pattern>/user/delete</url-pattern>
   </servlet-mapping>
   <locale-encoding-mapping-list>
     <locale-encoding-mapping>

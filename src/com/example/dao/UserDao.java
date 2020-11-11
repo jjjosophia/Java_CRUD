@@ -18,6 +18,7 @@ public class UserDao {
     private static final String INSERT_USER_SQL = "INSERT INTO users (name, email, created_at) VALUES (?, ?, ?);";
     private static final String SELECT_ALL_USERS = "select * from users order by `created_at` desc";
     private static final String SELECT_USER = "select * from users where id=?";
+    private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ? ,updated_at= ? where id = ?;";
 	public UserDao() {
 		super();
@@ -95,6 +96,13 @@ public class UserDao {
 	        }
 	        return rowUpdated;
 	    }
-		 
+	 public boolean deleteUser(int id) throws SQLException{
+	        boolean rowDeleted;
+	        try(Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);){
+	            statement.setInt(1, id);
+	            rowDeleted = statement.executeUpdate() > 0;
+	        }
+	        return rowDeleted;
+	    }
 	}
 
